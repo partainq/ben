@@ -1,6 +1,9 @@
 import slack
 import os
 import random
+import requests
+import json
+
 from pathlib import Path
 from dotenv import load_dotenv
 from flask import Flask
@@ -46,6 +49,15 @@ def message(payload):
         message = "The result is "+results
 
         client.chat_postMessage(channel=channel_id, text=message)
+
+    elif user_id != BOT_ID and "weather" in text.lower():
+        weather_key = "32843bad9e96bb36c7935458544b1628"
+        lat = "48.208176"
+        lon = "16.373819"
+        url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lat, lon, weather_key)
+        #response = requests.get(url)
+        #data = json.loads(response.text)
+        client.chat_postMessage(channel=channel_id, text="weather")
 
     elif user_id != BOT_ID and flag == True:
         client.chat_postMessage(channel=channel_id, text=text)
