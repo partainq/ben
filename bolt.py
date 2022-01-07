@@ -12,6 +12,9 @@ import pyjokes
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
+# gooda = xapp-1-A02SQ341ZCL-2926074915076-9b5c250da6ad7ec38d1ee832aca98e18acde5f0eebd3864d3abe8b540aa35854
+
+
 load_dotenv()
 
 SOCKET_TOKEN_DEV = os.environ["SOCKET_TOKEN_DEV"]
