@@ -1,5 +1,4 @@
-from app import *
-from stateChecker import *
+from bolt_socket import *
 
 # triviaAnswer = {channel_id: answer}
 triviaAnswer = {}
