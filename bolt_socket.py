@@ -2,6 +2,12 @@ import logging
 import os
 import re
 
+import random
+import pyjokes
+import requests, json
+import formats.weather, formats.help
+import Levenshtein
+
 from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
@@ -12,8 +18,10 @@ from triviaState import *
 
 load_dotenv()
 
-SOCKET_TOKEN = os.environ["SOCKET_TOKEN_DEV"]
-SLACK_TOKEN = os.environ["SLACK_TOKEN_DEV"]
+SOCKET_TOKEN = os.environ["SOCKET_TOKEN"]
+SLACK_TOKEN = os.environ["SLACK_TOKEN"]
+WEATHER_KEY = os.environ["WEATHER_KEY"]
+
 
 app = App(token=SLACK_TOKEN, name="ben")
 logger = logging.getLogger(__name__)
@@ -31,6 +39,13 @@ def anything(message, say):
         commenceNormalState(message, say)
     elif currentState == "triviaQuestion":
         commenceTriviaQuestionState(message, say)
+
+def compareValues(msg, correctAnswer):
+    correctAnswers = correctAnswer.split('|')
+    for x in correctAnswers:
+        if Levenshtein.distance(x, msg) < len(msg)//3:
+            return True
+    return False
 
 def main():
     handler = SocketModeHandler(app, SOCKET_TOKEN)

@@ -1,4 +1,4 @@
-from app import *
+from bolt_socket import *
 
-taylorAbbreviations = {}
+taylorAbbreviations = {"DTR": 'Define the relationship'}
 

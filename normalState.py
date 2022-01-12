@@ -1,17 +1,8 @@
-import random
-import pyjokes
-import os
-import requests, json
-
-import formats.weather, formats.help
-
-from dotenv import load_dotenv
 from bolt_socket import *
 
 load_dotenv()
 
 triviaList = [("do birds have heads?", "yes"), ("is Snape evil?", "no"), ("please stop", "no"), ("how about now", "no")]
-WEATHER_KEY = os.environ["WEATHER_KEY"]
 
 def commenceNormalState(message, say):
     # event = payload.get('event', {})
@@ -31,35 +22,35 @@ def commenceNormalState(message, say):
         if numbers[1] == "+":
             say(text=int(numbers[0]) + int(numbers[2], channel=dm_channel))
     
-    elif message['text'] == "hi":
+    elif compareValues(message['text'], "hi"):
         greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
         msg = f"{greeting} <@{message['user']}>"
 
         say(text=msg, channel=dm_channel)
 
-    elif message['text'] == "how are you" or message['text']=="how is your day|how was your day|how are ya":
+    elif compareValues(message['text'], "how are you|how is your day|how was your day|how are ya"):
         message = random.choice(["Having another day to help people is a blessing.",
                                  "Looks like my server is still up, so it is a good day!",
                                  "It's a great day to have a great day!", "Wonderful!"])
 
         say(text=message, channel=dm_channel)
 
-    elif message['text'] == "whats up" or message['text']=="|what up|what's up|sup":
+    elif compareValues(message['text'], "whats up|what up|what's up|sup"):
         message = random.choice(["Not much. Life is pretty quiet as a chatbot.",
                                  "Some movie about an old guy, balloons, and a flying house",
                                  "What can I help you with today?", "Great to hear from you."])
 
         say(text=message, channel=dm_channel)
 
-    elif message['text'] == "joke":
+    elif compareValues(message['text'], "joke"):
         say(text=pyjokes.get_joke(), channel=dm_channel)
 
-    elif message['text'] == "what are you" or message['text']=="|who are you|do you do|help|can you do|purpose|capabilities":
+    elif compareValues(message['text'], "what are you|who are you|do you do|help|can you do|purpose|capabilities"):
         blocks = formats.help.getFormat()
 
         say(blocks=blocks, text="help", channel=dm_channel)
 
-    elif message['text'] == "flip a coin":
+    elif compareValues(message['text'], "flip a coin"):
         rand_int = random.randint(0, 1)
         if rand_int == 0:
             results = "Coin Flip: heads"
@@ -68,7 +59,7 @@ def commenceNormalState(message, say):
 
         say(text=results, channel=dm_channel)
 
-    elif message['text'] == "weather":
+    elif compareValues(message['text'], "weather"):
         lat = "40"
         lon = "-85"
 
@@ -85,7 +76,7 @@ def commenceNormalState(message, say):
 
         say(blocks=blocks, text="weather", channel=dm_channel)
     
-    elif message['text'] == "next semester|next term|classes next|next classes|next year":
+    elif compareValues(message['text'], "next semester|next term|classes next|next classes|next year"):
         term_id = 90
         url = "http://api.dev.envisageplanner.com/courses/term-sections/" + str(term_id)
 
