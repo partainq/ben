@@ -1,4 +1,3 @@
-
 # dictofStates = {user_id: validState, etc}
 dictofStates = {}
 validStates = ['normal', 'triviaQuestion']
