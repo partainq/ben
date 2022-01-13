@@ -5,7 +5,7 @@ import re
 import random
 import pyjokes
 import requests, json
-import formats.weather, formats.help
+import formats.weather, formats.help, formats.nextSemester
 import Levenshtein
 
 from dotenv import load_dotenv
@@ -18,8 +18,8 @@ from triviaState import *
 
 load_dotenv()
 
-SOCKET_TOKEN = os.environ["SOCKET_TOKEN"]
-SLACK_TOKEN = os.environ["SLACK_TOKEN"]
+SOCKET_TOKEN = os.environ["SOCKET_TOKEN_DEV"]
+SLACK_TOKEN = os.environ["SLACK_TOKEN_DEV"]
 WEATHER_KEY = os.environ["WEATHER_KEY"]
 
 

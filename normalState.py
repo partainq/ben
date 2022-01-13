@@ -1,6 +1,5 @@
 from bolt_socket import *
-
-load_dotenv()
+from datetime import date, datetime
 
 triviaList = [("do birds have heads?", "yes"), ("is Snape evil?", "no"), ("please stop", "no"), ("how about now", "no")]
 
@@ -71,20 +70,55 @@ def commenceNormalState(message, say):
         temp = request["temp"]
         description = request["weather"][0]["main"]
 
-        print(request)
         blocks = formats.weather.getFormat(temp, icon, description)
 
         say(blocks=blocks, text="weather", channel=dm_channel)
     
-    elif compareValues(message['text'], "next semester|next term|classes next|next classes|next year"):
-        term_id = 90
+    elif compareValues(message['text'], "next semester | next term | classes next | next classes | next year "):
+        term_id = getTermId()
         url = "http://api.dev.envisageplanner.com/courses/term-sections/" + str(term_id)
 
         request = json.loads(requests.get(url).text)
 
+        classes = []
         for x in range(len(request)):
-            if request[x]["Course"]["idProvided"] == "COS243":
-                print(request[x]["Course"]["idProvided"])
+            if request[x]["Course"]["idProvided"][0:3] == "COS":
+                classes.append(request[x]["Course"])
+
+        blocks = formats.nextSemester.getFormat(classes, "Spring 2022")
+
+        say(blocks=blocks, text="next semester", channel=dm_channel)
     
     else:
         say(text="Not sure what you are saying...Code me further to do that!", channel=dm_channel)
+
+def getTermId():
+    url = "https://api.dev.envisageplanner.com/terms"
+    request = json.loads(requests.get(url).text)
+    currentTerm = getNextTerm()
+
+    for x in request:
+        if x["name"] == currentTerm:
+            return x["id"]
+
+    return "0"
+
+def getNextTerm():
+    doy = datetime.today().timetuple().tm_yday
+    currentYear = datetime.now().year
+
+    spring = range(33, 152)
+    summer = range(152, 234)
+    fall = range(234, 348)
+
+    if doy in spring:
+        season = 'Summer'
+    elif doy in summer:
+        season = 'Fall'
+    elif doy in fall:
+        season = 'Interem'
+    else:
+        season = 'Spring'
+    
+    return season + " " + str(currentYear)
+    
