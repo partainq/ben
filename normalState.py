@@ -1,4 +1,5 @@
 from bolt_socket import *
+from datetime import date, datetime
 from stateChecker import *
 from triviaState import *
 from helpfulFunctions import *
@@ -87,6 +88,7 @@ def commenceNormalState(message, say):
 
         request = json.loads(requests.get(url).text)
 
+        classes = []
         for x in range(len(request)):
             if request[x]["Course"]["idProvided"] == "COS243":
                 print(request[x]["Course"]["idProvided"])
@@ -100,6 +102,43 @@ def commenceNormalState(message, say):
         commenceHangmanState(message,say)
 
 
-    
+            if request[x]["Course"]["idProvided"][0:3] == "COS":
+                classes.append(request[x]["Course"])
+
+        blocks = formats.nextSemester.getFormat(classes, "Spring 2022")
+
+        say(blocks=blocks, text="next semester", channel=dm_channel)
+
     else:
         say(text="Not sure what you are saying...Code me further to do that!", channel=dm_channel)
+
+def getTermId():
+    url = "https://api.dev.envisageplanner.com/terms"
+    request = json.loads(requests.get(url).text)
+    currentTerm = getNextTerm()
+
+    for x in request:
+        if x["name"] == currentTerm:
+            return x["id"]
+
+    return "0"
+
+def getNextTerm():
+    doy = datetime.today().timetuple().tm_yday
+    currentYear = datetime.now().year
+
+    spring = range(33, 152)
+    summer = range(152, 234)
+    fall = range(234, 348)
+
+    if doy in spring:
+        season = 'Summer'
+    elif doy in summer:
+        season = 'Fall'
+    elif doy in fall:
+        season = 'Interem'
+    else:
+        season = 'Spring'
+
+    return season + " " + str(currentYear)
+
