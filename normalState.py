@@ -93,6 +93,13 @@ def commenceNormalState(message, say):
             if request[x]["Course"]["idProvided"] == "COS243":
                 print(request[x]["Course"]["idProvided"])
 
+            if request[x]["Course"]["idProvided"][0:3] == "COS":
+                classes.append(request[x]["Course"])
+
+        blocks = formats.nextSemester.getFormat(classes, "Spring 2022")
+
+        say(blocks=blocks, text="next semester", channel=dm_channel)
+
     elif compareValues(message['text'], "trivia|lets play trivia|I like trivia"):
         changeState(user_id, 'trivia')
         commenceTriviaState(message,say)
@@ -102,15 +109,9 @@ def commenceNormalState(message, say):
         commenceHangmanState(message,say)
 
 
-            if request[x]["Course"]["idProvided"][0:3] == "COS":
-                classes.append(request[x]["Course"])
-
-        blocks = formats.nextSemester.getFormat(classes, "Spring 2022")
-
-        say(blocks=blocks, text="next semester", channel=dm_channel)
-
     else:
         say(text="Not sure what you are saying...Code me further to do that!", channel=dm_channel)
+
 
 def getTermId():
     url = "https://api.dev.envisageplanner.com/terms"

@@ -6,7 +6,6 @@ import random
 import pyjokes
 import requests, json
 import formats.weather, formats.help, formats.nextSemester
-import Levenshtein
 
 from dotenv import load_dotenv
 from slack_bolt import App
@@ -42,12 +41,6 @@ def anything(message, say):
     elif currentState == "trivia":
         commenceTriviaState(message, say)
 
-def compareValues(msg, correctAnswer):
-    correctAnswers = correctAnswer.split('|')
-    for x in correctAnswers:
-        if Levenshtein.distance(x, msg) < len(msg)//3:
-            return True
-    return False
 
 def main():
     handler = SocketModeHandler(app, SOCKET_TOKEN)
