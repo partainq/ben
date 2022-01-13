@@ -83,20 +83,17 @@ def commenceNormalState(message, say):
         say(blocks=blocks, text="weather", channel=dm_channel)
     
     elif compareValues(message['text'], "next semester|next term|classes next|next classes|next year"):
-        term_id = 90
+        term_id = getTermId()
         url = "http://api.dev.envisageplanner.com/courses/term-sections/" + str(term_id)
 
         request = json.loads(requests.get(url).text)
 
         classes = []
         for x in range(len(request)):
-            if request[x]["Course"]["idProvided"] == "COS243":
-                print(request[x]["Course"]["idProvided"])
-
             if request[x]["Course"]["idProvided"][0:3] == "COS":
                 classes.append(request[x]["Course"])
 
-        blocks = formats.nextSemester.getFormat(classes, "Spring 2022")
+        blocks = formats.nextSemester.getFormat(classes, getNextTerm())
 
         say(blocks=blocks, text="next semester", channel=dm_channel)
 

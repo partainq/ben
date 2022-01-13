@@ -33,7 +33,7 @@ def getFormat(classes, term):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "<https://cse.taylor.edu/information/info/|More information available here>"
+				"text": "<https://cse.taylor.edu/information/info/|More information available here> \n"
 			}
 		}
 	)
