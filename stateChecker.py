@@ -1,6 +1,6 @@
 # dictofStates = {user_id: validState, etc}
 dictofStates = {}
-validStates = ['normal', 'triviaQuestion']
+validStates = ['normal', 'trivia']
 
 def checkState(user_id):
     if user_id not in dictofStates.keys():

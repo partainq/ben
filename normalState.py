@@ -1,8 +1,13 @@
 from bolt_socket import *
+from stateChecker import *
+from triviaState import *
+from helpfulFunctions import *
+from hangmanState import *
+
 
 load_dotenv()
 
-triviaList = [("do birds have heads?", "yes"), ("is Snape evil?", "no"), ("please stop", "no"), ("how about now", "no")]
+
 
 def commenceNormalState(message, say):
     # event = payload.get('event', {})
@@ -85,6 +90,16 @@ def commenceNormalState(message, say):
         for x in range(len(request)):
             if request[x]["Course"]["idProvided"] == "COS243":
                 print(request[x]["Course"]["idProvided"])
+
+    elif compareValues(message['text'], "trivia|lets play trivia|I like trivia"):
+        changeState(user_id, 'trivia')
+        commenceTriviaState(message,say)
+
+    elif compareValues(message['text'], 'hangman'):
+        changeState(user_id, 'hangman')
+        commenceHangmanState(message,say)
+
+
     
     else:
         say(text="Not sure what you are saying...Code me further to do that!", channel=dm_channel)
