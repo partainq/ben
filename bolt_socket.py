@@ -40,6 +40,10 @@ def anything(message, say):
         commenceNormalState(message, say)
     elif currentState == "trivia":
         commenceTriviaState(message, say)
+    elif currentState == "hangman":
+        commenceHangmanState(message, say)
+    elif currentState == "studyTable":
+        commenceStudyTableState(message, say)
 
 
 def main():
