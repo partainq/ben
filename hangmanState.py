@@ -27,7 +27,12 @@ def commenceHangmanState(message, say):
             currentWord[user_id] = currentWord[user_id] + "_"
 
     else:
-        if len(message['text']) > 1:
+        if message['text'] == 'quit':
+            say(text='hangman ended', channel=dm_channel)
+            changeState(user_id, 'normal')
+            del currentHangman[user_id]
+            return
+        elif len(message['text']) > 1:
             say(text="Please only guess one letter", channel=dm_channel)
             return
         elif ord(message['text']) < 65 or 90 < ord(message['text']) < 97 or 122 < ord(message['text']):

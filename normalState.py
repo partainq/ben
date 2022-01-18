@@ -5,6 +5,7 @@ from triviaState import *
 from helpfulFunctions import *
 from hangmanState import *
 from studyTableState import *
+from cseEventState import getNextCSEEvent
 
 
 load_dotenv()
@@ -57,6 +58,13 @@ def commenceNormalState(message, say):
         blocks = formats.help.getFormat()
 
         say(blocks=blocks, text="help", channel=dm_channel)
+
+    elif compareValues(message['text'], 'add cse event'):
+        say(text="Please enter admin password: ", channel=dm_channel)
+        changeState(user_id, 'cseEvent')
+
+    elif compareValues(message['text'], 'cse event'):
+        say(text=getNextCSEEvent(), channel=dm_channel)
 
     elif compareValues(message['text'], "flip a coin"):
         rand_int = random.randint(0, 1)

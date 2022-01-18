@@ -13,6 +13,7 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 
 from stateChecker import *
 from normalState import *
+from cseEventState import *
 from triviaState import *
 from helpfulFunctions import *
 
@@ -44,7 +45,8 @@ def anything(message, say):
         commenceHangmanState(message, say)
     elif currentState == "studyTable":
         commenceStudyTableState(message, say)
-
+    elif currentState == "cseEvent":
+        commenceCSEEvent(message, say)
 
 def main():
     handler = SocketModeHandler(app, SOCKET_TOKEN)
