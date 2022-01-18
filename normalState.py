@@ -106,6 +106,9 @@ def commenceNormalState(message, say):
     elif compareValues(message['text'], 'hangman'):
         changeState(user_id, 'hangman')
         commenceHangmanState(message,say)
+    elif compareValues(message['text'], 'abbreviations'):
+        abbreviations = "DTR = Define the relationship\nSTU = Student Center\nDC = Dining Commons\nTWO = Taylor World Outreach\nKSAC = Keisler Student Activity Center\nTSO = Taylor Student Organization\nSAC = Student Activity Council"
+        say(text=abbreviations, channel=dm_channel)
 
     elif compareValues(message['text'], 'studytable|study table|table study'):
         changeState(user_id, 'studyTable')

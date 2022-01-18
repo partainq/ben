@@ -3,7 +3,8 @@ from normalState import *
 from helpfulFunctions import *
 import random
 
-triviaList = [["do birds have heads?", "yes"], ["is Snape evil?", "no"]]
+triviaList = [["When was Taylor founded?", "1846"], ["Who made me?", "Quinn Partain and Micah Odell"],
+              ["What does DTR mean?", "Define the relationship"], ["When was the 1984 Ford invented?", "1984"]]
 triviaAnswer={}
 # triviaAnswer = {user_id: answer}
 triviaAnswering = {}
@@ -23,7 +24,6 @@ def commenceTriviaState(message, say):
         # say(text="lets play trivia", channel=dm_channel)
         say(text=question[0], channel=dm_channel)
     else:
-        print(message['text'], triviaAnswer[user_id])
         if compareValues(message['text'], triviaAnswer[user_id]):
             say(text='Correct!', channel=dm_channel)
             changeState(user_id, 'normal')
