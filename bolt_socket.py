@@ -19,8 +19,8 @@ from helpfulFunctions import *
 
 load_dotenv()
 
-SOCKET_TOKEN = os.environ["SOCKET_TOKEN"]
-SLACK_TOKEN = os.environ["SLACK_TOKEN"]
+SOCKET_TOKEN = os.environ["SOCKET_TOKEN_DEV"]
+SLACK_TOKEN = os.environ["SLACK_TOKEN_DEV"]
 WEATHER_KEY = os.environ["WEATHER_KEY"]
 
 
@@ -40,7 +40,8 @@ def anything(message, say):
         commenceNormalState(message, say)
     elif currentState == "trivia":
         commenceTriviaState(message, say)
-
+    elif currentState == "studyTable":
+        commenceStudyTableState(message, say)
 
 def main():
     handler = SocketModeHandler(app, SOCKET_TOKEN)

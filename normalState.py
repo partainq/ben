@@ -4,6 +4,7 @@ from stateChecker import *
 from triviaState import *
 from helpfulFunctions import *
 from hangmanState import *
+from studyTableState import *
 
 
 load_dotenv()
@@ -32,6 +33,7 @@ def commenceNormalState(message, say):
         greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
         msg = f"{greeting} <@{message['user']}>"
 
+        print(dm_channel)
         say(text=msg, channel=dm_channel)
 
     elif compareValues(message['text'], "how are you|how is your day|how was your day|how are ya"):
@@ -105,10 +107,12 @@ def commenceNormalState(message, say):
         changeState(user_id, 'hangman')
         commenceHangmanState(message,say)
 
+    elif compareValues(message['text'], 'studytable|study table|table study'):
+        changeState(user_id, 'studyTable')
+        commenceStudyTableState(message,say)
 
     else:
         say(text="Not sure what you are saying...Code me further to do that!", channel=dm_channel)
-
 
 def getTermId():
     url = "https://api.dev.envisageplanner.com/terms"
