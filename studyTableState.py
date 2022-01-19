@@ -39,7 +39,7 @@ def commenceStudyTableState(message, say):
             say(text="What professor would you like to notify? Please use an @sign ", channel=dm_channel)
     elif confirming:
         if message['text'] == 'yes':
-            msg = "Great! Please provide a short reason for this study table.\n\n*Example:*\nCOS243 Javascript help with promises."
+            msg = "Great! Please provide a short reason for this study table and the class that it is for.\n\n*Example:*\nCOS243 Javascript help with promises."
             say(text=msg, channel=dm_channel)
             confirming = False
             reasoning = True

@@ -7,19 +7,24 @@ from hangmanState import *
 from studyTableState import *
 from cseEventState import getNextCSEEvent
 
+import random
+import pyjokes
+import requests, json
+import formats.weather, formats.help, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley
 
 load_dotenv()
 
-
-
 def commenceNormalState(message, say):
-    # event = payload.get('event', {})
-    # channel_id = event.get('channel')
-    # user_id = event.get('user')
-    # text = event.get('text')
-    channel_type = message["channel_type"]
     dm_channel = message["channel"]
     user_id = message["user"]
+
+    
+    if compareValues(message['text'], "hey|hi|hello|howdy"):
+        greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
+        msg = f"{greeting} <@{message['user']}>"
+
+        print(dm_channel)
+        say(text=msg, channel=dm_channel)
 
     if message['text'][-1] == "=":
         numbers = message['text'].split()
@@ -29,13 +34,6 @@ def commenceNormalState(message, say):
             say(text=int(numbers[0]) * int(numbers[2], channel=dm_channel))
         if numbers[1] == "+":
             say(text=int(numbers[0]) + int(numbers[2], channel=dm_channel))
-    
-    elif compareValues(message['text'], "hi|hello|howdy"):
-        greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
-        msg = f"{greeting} <@{message['user']}>"
-
-        print(dm_channel)
-        say(text=msg, channel=dm_channel)
 
     elif compareValues(message['text'], "how are you|how is your day|how was your day|how are ya"):
         message = random.choice(["Having another day to help people is a blessing.",
@@ -119,7 +117,7 @@ def commenceNormalState(message, say):
         say(text="A *game jam* is a short, fun, and intense competition during which students get together to develop a video game from scratch. Regardless of major or knowledge of programming, all TU students are invited to participate! Find more information at https://gamejam.cse.taylor.edu/.", channel=dm_channel)
     
     elif compareValues(message['text'], "TWEET"):
-        say(text="Taylor Women Engaged in Engineering and Technology, or TWEET, is a club that seeks to provide social, academic, and career development opportunities for women studying computer science and engineering (or both!). We seek to build community through events like TWEET Teas, Baking with Buddies, and game nights. Interested? Ask Lara Horsley more information. Don't know who that is? Ask away!", channel=dm_channel)
+        say(text="Taylor Women Engaged in Engineering and Technology, or TWEET, is a club that seeks to provide social, academic, and career development opportunities for women studying computer science and engineering (or both!). We seek to build community through events like TWEET Teas, Baking with Buddies, and game nights. \n\nInterested? Ask Lara Horsley for more information. Don't know who that is? Ask away!", channel=dm_channel)
 
     elif compareValues(message['text'], "Envisage"):
         say(text="Work in progress", channel=dm_channel)
@@ -144,6 +142,10 @@ def commenceNormalState(message, say):
     elif compareValues(message['text'], 'abbreviations'):
         abbreviations = "DTR = Define the relationship\nSTU = Student Center\nDC = Dining Commons\nTWO = Taylor World Outreach\nKSAC = Keisler Student Activity Center\nTSO = Taylor Student Organization\nSAC = Student Activity Council"
         say(text=abbreviations, channel=dm_channel)
+
+    elif compareValues(message['text'], 'Lara|Horsley'):
+        blocks = formats.laraHorsley.getFormat()
+        say(blocks=blocks, text="Lara Horsley", channel=dm_channel)
 
     elif compareValues(message['text'], 'studytable|study table|table study'):
         changeState(user_id, 'studyTable')
@@ -181,4 +183,3 @@ def getNextTerm():
         season = 'Spring'
 
     return season + " " + str(currentYear)
-
