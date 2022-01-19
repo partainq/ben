@@ -5,7 +5,7 @@ import re
 import random
 import pyjokes
 import requests, json
-import formats.weather, formats.help, formats.nextSemester
+import formats.weather, formats.help, formats.nextSemester, formats.chapel, formats.clubs
 
 from dotenv import load_dotenv
 from slack_bolt import App
@@ -17,11 +17,10 @@ from cseEventState import *
 from triviaState import *
 from helpfulFunctions import *
 
-
 load_dotenv()
 
-SOCKET_TOKEN = os.environ["SOCKET_TOKEN"]
-SLACK_TOKEN = os.environ["SLACK_TOKEN"]
+SOCKET_TOKEN = os.environ["SOCKET_TOKEN_DEV"]
+SLACK_TOKEN = os.environ["SLACK_TOKEN_DEV"]
 WEATHER_KEY = os.environ["WEATHER_KEY"]
 
 

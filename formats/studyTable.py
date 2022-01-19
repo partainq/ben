@@ -1,35 +1,24 @@
-def getFormat():
+def getFormat(reason):
+    formattedReason = "*Reason:*\n"+reason
     return [
         {
-            "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "You have requested a study table"
-                }
-        },
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Hey there 👋 . I have a system that lets students request the need for a study table. Below is an anonymous request. Thank you for all you do! \n\n"
+			}
+		},
         {
             "type": "section",
             "fields": [
                 {
                     "type": "mrkdwn",
-                    "text": "*Here's how it works:*\nI will let what professor you request know that a student anonymously requested help."
+                    "text": "*Study Table Alert:*\nA student has anonmously notified me that there is a need for a study table."
                 },
                 {
                     "type": "mrkdwn",
-                    "text": "*When:*\nSubmitted Aut 10"
+                    "text": formattedReason
                 },
-                {
-                    "type": "mrkdwn",
-                    "text": "*Last Update:*\nMar 10, 2015 (3 years, 5 months)"
-                },
-                {
-                    "type": "mrkdwn",
-                    "text": "*Reason:*\nAll vowel keys aren't working."
-                },
-                {
-                    "type": "mrkdwn",
-                    "text": "*Specs:*\n\"Cheetah Pro 15\" - Fast, really fast\""
-                }
             ]
 		}
 	]
