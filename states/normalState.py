@@ -171,7 +171,7 @@ def commenceNormalState(message, say):
         commenceStudyTableState(message,say)
 
     else:
-        say(text="Not sure what you are saying...Code me further to do that! Text *help* or *help-all* to see what I can do.", channel=dm_channel)
+        say(text="Not sure what you are saying...Code me further to do that! Text *help* to see what I can do.", channel=dm_channel)
 
 def getTermId():
     url = "https://api.dev.envisageplanner.com/terms"
