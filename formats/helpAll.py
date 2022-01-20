@@ -116,7 +116,7 @@ def getFormat():
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "1️⃣7️⃣ *Lara* provides Laura Horsley's contact information."
+				"text": "1️⃣7️⃣ *Lara* provides Lara Horsley's contact information."
 			}
 		},
         {

@@ -121,13 +121,13 @@ def commenceNormalState(message, say):
         say(text="Work in progress", channel=dm_channel)
 
     elif compareValues(message['text'], "TU Pilots|TUPILOTS|tu pilots"):
-        say(text="Work in progress", channel=dm_channel)
+        say(text="TU Pilots is drone club on campus. The club welcomes people of all expierences. To learn more, ask Lara", channel=dm_channel)
 
     elif compareValues(message['text'], "Esports|esports"):
         say(text="Taylor Esports is an up-and-coming club on Taylor University’s campus! Its goal is to provide a central hub for all gamers on campus! Its aim is to have teams competing in every collegiate esport out there! Join the official Taylor Esports Discord to learn more at tayloresports.com.", channel=dm_channel)
 
     elif compareValues(message['text'], "Crossfit |TU XFIT|crossfit"):
-        say(text="Work in progress", channel=dm_channel)
+        say(text="Taylor Crossfit offers the chance for a fitness regimen that involves constantly varied functional movements performed at high intensity. Ask the front desk at the KSAC for more information.", channel=dm_channel)
 
     elif compareValues(message['text'], "CCO|cco"):
         say(text="The Mission of the *Calling and Career Office* (CCO) is to connect students to people and experiences that guide them in discerning a faithful response to God’s call. Their office is located in the Student Center. They can help you write your resume or connect you with an internship!", channel=dm_channel)
@@ -140,7 +140,7 @@ def commenceNormalState(message, say):
         say(text="*Tutoring Services*\n Peer Tutoring Services, located in the AEC in Zondervan Library, provides free help to students in most content areas. For further information, contact Darci Nurkkala, drnurkkala@taylor.edu. Additionally, you can text me *study table* and I can notify someone that a student anonymously requested one.",channel=dm_channel)
     
     elif compareValues(message['text'], "change major|major change|degree requirements|graduation"):
-        say(text="*Major Changes and Degree Requirements*\n All information regarding changing your major, requirements, or graduation can be found in Euler 213. Ask Laura to point you in the right direction. Don't know who Laura is? Ask away!",channel=dm_channel)
+        say(text="*Major Changes and Degree Requirements*\n All information regarding changing your major, requirements, or graduation can be found in Euler 213. Ask Lara to point you in the right direction. Don't know who Lara is? Ask away!",channel=dm_channel)
     
     elif compareValues(message['text'], "special needs|scott barrett|aec|AEC|enrichment center"):
         say(text="*Academic Enrichment Center*\n The Academic Enrichment Center provides a variety of services for students who have disabilities. This includes, but is not limited to, mental, emotional, physical, and learning disabilities. Contact *Scott Barrett*, scott_barrett@taylor.edu, to learn more. If you need accommodations due to a disability, please also see your professor so that they can help accordingly.")

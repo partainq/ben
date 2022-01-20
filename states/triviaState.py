@@ -4,15 +4,10 @@ from helpers.compare import *
 from pytrivia import Category, Diffculty, Type, Trivia
 import random
 
-triviaList = [["When was Taylor founded?", "1846"], ["Who made me?", "Quinn Partain and Micah Odell"],
-              ["What does DTR mean?", "Define the relationship"], ["When was the 1984 Ford invented?", "1984"]]
 triviaAnswer={}
-# triviaAnswer = {user_id: answer}
 triviaAnswering = {}
-# triviaAnswering = {user_id: True}
 
 my_api = Trivia(True)
-
 
 def commenceTriviaState(message, say):
     channel_type = message["channel_type"]
@@ -22,12 +17,6 @@ def commenceTriviaState(message, say):
     if user_id not in triviaAnswering.keys() or triviaAnswering[user_id] == False:
         triviaAnswering[user_id] = True
         response = my_api.request(1)
-        # say(text=response['results'][0]['question'], channel=dm_channel)
-        # say(text=response['results'][0]['correct_answer'], channel=dm_channel)
-        # question = random.choice(triviaList)
-        # triviaAnswer[user_id] = response['results'][0]['correct_answer']
-        # say(text="I love trivia", channel=dm_channel)
-        # say(text="lets play trivia", channel=dm_channel)
         say(text=response['results'][0]['question'], channel=dm_channel)
         if response['results'][0]['type'] == 'boolean':
             if response['results'][0]['correct_answer'] == True:
