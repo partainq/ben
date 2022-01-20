@@ -14,6 +14,11 @@ confirming = {}
 # reasoning = False
 reasoning = {}
 who = ''
+history = {}
+checkingPassword = {}
+findingBadMessage = {}
+password = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
+
 
 def commenceStudyTableState(message, say):
     global explaining, asking, confirming, reasoning, who
@@ -27,6 +32,8 @@ def commenceStudyTableState(message, say):
         asking[user_id] = False
         confirming[user_id] = False
         reasoning[user_id] = False
+        checkingPassword[user_id] = False
+        findingBadMessage[user_id] = False
 
     if message['text'] == 'quit':
         say(text="studyTable state cancel", channel=dm_channel)
@@ -34,8 +41,19 @@ def commenceStudyTableState(message, say):
         del explaining[user_id]
         del asking[user_id]
         del confirming[user_id]
+        del checkingPassword[user_id]
+        del findingBadMessage[user_id]
         changeState(user_id, 'normal')
-    
+
+    elif message['text'] == 'check history':
+        say(text="To check history, please provide admin password", channel=dm_channel)
+        checkingPassword[user_id] = True
+        explaining[user_id] = False
+        asking[user_id] = False
+        confirming[user_id] = False
+        reasoning[user_id] = False
+        findingBadMessage[user_id] = False
+
     elif explaining[user_id]:
         msg = "*Study Table*\n I will walk you through a series of questions to help setup a study table anonymously. At any point you may type *quit* and the process will be terminated. Should issues arrise, the CSE department could view message history. Please use _wisely_ and be _polite_.\n"
         say(text=msg, channel=dm_channel)
@@ -65,6 +83,10 @@ def commenceStudyTableState(message, say):
     elif reasoning[user_id]:
         msg = 'An anonymous request for a study table has been sent to '+ who +'. Good luck in your studies!'
         say(text=msg, channel=dm_channel)
+        if user_id in history.keys():
+            history[user_id].append(message['text'])
+        else:
+            history[user_id] = [message['text']]
 
         id = who[2:-1]
         blocks = formats.studyTable.getFormat(message['text'])
@@ -73,6 +95,33 @@ def commenceStudyTableState(message, say):
         del explaining[user_id]
         del asking[user_id]
         del confirming[user_id]
+        del checkingPassword[user_id]
         changeState(user_id, 'normal')
+    elif checkingPassword[user_id]:
+        if hashlib.sha256(message['text'].encode()).hexdigest() == password:
+            say(text='Please enter what was said', channel=dm_channel)
+            findingBadMessage[user_id] = True
+            checkingPassword[user_id] = False
+        else:
+            say(text='incorrect password, try again', channel=dm_channel)
+    elif findingBadMessage[user_id]:
+        for x in history.keys():
+            for y in history[x]:
+                if compareValues(y, message['text']):
+                    tempUser = '<@' + x + '>'
+                    say(text='we found this *' + y + '* from ' + tempUser, channel=dm_channel)
+                    say(text="studyTable state ended", channel=dm_channel)
+                    del reasoning[user_id]
+                    del explaining[user_id]
+                    del asking[user_id]
+                    del confirming[user_id]
+                    del checkingPassword[user_id]
+                    del findingBadMessage[user_id]
+                    changeState(user_id, 'normal')
+                    return
+        say(text='No message explicitly matched *' + message['text'] +"*", channel=dm_channel)
+
+
+
 
 
