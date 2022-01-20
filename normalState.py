@@ -29,11 +29,11 @@ def commenceNormalState(message, say):
     elif message['text'][-1] == "=":
         numbers = message['text'].split()
         if numbers[1] == "-":
-            say(text=int(numbers[0]) - int(numbers[2], channel=dm_channel))
+            say(text=str(int(numbers[0]) - int(numbers[2])), channel=dm_channel)
         if numbers[1] == "*":
-            say(text=int(numbers[0]) * int(numbers[2], channel=dm_channel))
+            say(text=str(int(numbers[0]) * int(numbers[2])), channel=dm_channel)
         if numbers[1] == "+":
-            say(text=int(numbers[0]) + int(numbers[2], channel=dm_channel))
+            say(text=str(int(numbers[0]) + int(numbers[2])), channel=dm_channel)
 
     elif compareValues(message['text'], "how are you|how is your day|how was your day|how are ya"):
         message = random.choice(["Having another day to help people is a blessing.",

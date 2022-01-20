@@ -25,24 +25,36 @@ def commenceTriviaState(message, say):
         # say(text=response['results'][0]['question'], channel=dm_channel)
         # say(text=response['results'][0]['correct_answer'], channel=dm_channel)
         # question = random.choice(triviaList)
-        triviaAnswer[user_id] = response['results'][0]['correct_answer']
+        # triviaAnswer[user_id] = response['results'][0]['correct_answer']
         # say(text="I love trivia", channel=dm_channel)
         # say(text="lets play trivia", channel=dm_channel)
         say(text=response['results'][0]['question'], channel=dm_channel)
         if response['results'][0]['type'] == 'boolean':
-            say(text="True", channel=dm_channel)
-            say(text="False", channel=dm_channel)
+            if response['results'][0]['correct_answer'] == True:
+                triviaAnswer[user_id] = 'a'
+            else:
+                triviaAnswer[user_id] = 'b'
+            say(text="A: True", channel=dm_channel)
+            say(text="B: False", channel=dm_channel)
         else:
             possibleAnswers=response['results'][0]['incorrect_answers']
             possibleAnswers.append(response['results'][0]['correct_answer'])
             random.shuffle(possibleAnswers)
-            say(text=possibleAnswers[0], channel=dm_channel)
-            say(text=possibleAnswers[1], channel=dm_channel)
-            say(text=possibleAnswers[2], channel=dm_channel)
-            say(text=possibleAnswers[3], channel=dm_channel)
+            if possibleAnswers.index(response['results'][0]['correct_answer']) == 0:
+                triviaAnswer[user_id] = 'a'
+            elif possibleAnswers.index(response['results'][0]['correct_answer']) == 1:
+                triviaAnswer[user_id] = 'b'
+            elif possibleAnswers.index(response['results'][0]['correct_answer']) == 2:
+                triviaAnswer[user_id] = 'c'
+            else:
+                triviaAnswer[user_id] = 'd'
+            say(text='A: ' + possibleAnswers[0], channel=dm_channel)
+            say(text='B: ' + possibleAnswers[1], channel=dm_channel)
+            say(text='C: ' + possibleAnswers[2], channel=dm_channel)
+            say(text='D: ' + possibleAnswers[3], channel=dm_channel)
 
     else:
-        if compareValues(message['text'], triviaAnswer[user_id]):
+        if compareValues(message['text'].lower(), triviaAnswer[user_id]):
             say(text='Correct!', channel=dm_channel)
             changeState(user_id, 'normal')
         else:

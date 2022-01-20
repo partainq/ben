@@ -20,7 +20,7 @@ def commenceCSEEvent(message, say):
 
     if hashlib.sha256(message['text'].encode()).hexdigest() == password:
         userPassword[user_id] = True
-        say(text='Please enter event name followed by date seperated by ; (ex. Game Jam;4/15/21', channel=dm_channel)
+        say(text='Please enter event name followed by date seperated by ; (ex. Game Jam;4/15/2022', channel=dm_channel)
 
     if userPassword[user_id] == True:
         if hashlib.sha256(message['text'].encode()).hexdigest() == password:
@@ -31,10 +31,12 @@ def commenceCSEEvent(message, say):
             print(nextCSEEvent)
             changeState(user_id, 'normal')
         elif message['text'] == 'quit':
+            say(text="back to normal Ben", channel=dm_channel)
             changeState(user_id, 'normal')
         else:
             say(text='try again', channel=dm_channel)
     elif message['text'] == 'quit':
+        say(text="back to normal Ben", channel=dm_channel)
         changeState(user_id, 'normal')
     else:
         say(text='wrong password', channel=dm_channel)
