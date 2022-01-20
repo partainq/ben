@@ -4,21 +4,15 @@ from helpers.compare import *
 from helpers.stateChecker import *
 import formats.studyTable
 
-
-# explaining = True
 explaining = {}
-# asking = False
 asking = {}
-# confirming = False
 confirming = {}
-# reasoning = False
 reasoning = {}
 who = ''
 history = {}
 checkingPassword = {}
 findingBadMessage = {}
 password = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
-
 
 def commenceStudyTableState(message, say):
     global explaining, asking, confirming, reasoning, who
@@ -99,18 +93,18 @@ def commenceStudyTableState(message, say):
         changeState(user_id, 'normal')
     elif checkingPassword[user_id]:
         if hashlib.sha256(message['text'].encode()).hexdigest() == password:
-            say(text='Please enter what was said', channel=dm_channel)
+            say(text='Please enter what was said.', channel=dm_channel)
             findingBadMessage[user_id] = True
             checkingPassword[user_id] = False
         else:
-            say(text='incorrect password, try again', channel=dm_channel)
+            say(text='Incorrect password, try again.', channel=dm_channel)
     elif findingBadMessage[user_id]:
         for x in history.keys():
             for y in history[x]:
                 if compareValues(y, message['text']):
                     tempUser = '<@' + x + '>'
-                    say(text='we found this *' + y + '* from ' + tempUser, channel=dm_channel)
-                    say(text="studyTable state ended", channel=dm_channel)
+                    say(text='We found this *' + y + '* from ' + tempUser, channel=dm_channel)
+                    say(text="Thank you.", channel=dm_channel)
                     del reasoning[user_id]
                     del explaining[user_id]
                     del asking[user_id]
@@ -120,8 +114,3 @@ def commenceStudyTableState(message, say):
                     changeState(user_id, 'normal')
                     return
         say(text='No message explicitly matched *' + message['text'] +"*", channel=dm_channel)
-
-
-
-
-

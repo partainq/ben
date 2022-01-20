@@ -23,7 +23,6 @@ def commenceNormalState(message, say):
         greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
         msg = f"{greeting} <@{message['user']}>"
 
-        # print(dm_channel)
         say(text=msg, channel=dm_channel)
 
     elif message['text'][-1] == "=":
@@ -85,7 +84,6 @@ def commenceNormalState(message, say):
         temp = request["temp"]
         description = request["weather"][0]["main"]
 
-        print(request)
         blocks = formats.weather.getFormat(temp, icon, description)
 
         say(blocks=blocks, text="weather", channel=dm_channel)
@@ -109,29 +107,29 @@ def commenceNormalState(message, say):
         blocks = formats.chapel.getFormat()
         say(blocks=blocks, text="next semester", channel=dm_channel)
 
-    elif compareValues(message['text'], "club"):
+    elif compareValues(message['text'], "club|clubs"):
         blocks = formats.clubs.getFormat()
         say(blocks=blocks, text="clubs", channel=dm_channel)
 
     elif compareValues(message['text'], "gamejam|game jam"):
         say(text="A *game jam* is a short, fun, and intense competition during which students get together to develop a video game from scratch. Regardless of major or knowledge of programming, all TU students are invited to participate! Find more information at https://gamejam.cse.taylor.edu/.", channel=dm_channel)
     
-    elif compareValues(message['text'], "TWEET"):
+    elif compareValues(message['text'], "TWEET|tweet"):
         say(text="Taylor Women Engaged in Engineering and Technology, or TWEET, is a club that seeks to provide social, academic, and career development opportunities for women studying computer science and engineering (or both!). We seek to build community through events like TWEET Teas, Baking with Buddies, and game nights. \n\nInterested? Ask Lara Horsley for more information. Don't know who that is? Ask away!", channel=dm_channel)
 
-    elif compareValues(message['text'], "Envisage"):
+    elif compareValues(message['text'], "Envisage|envisage"):
         say(text="Work in progress", channel=dm_channel)
 
-    elif compareValues(message['text'], "TU Pilots|TUPILOTS"):
+    elif compareValues(message['text'], "TU Pilots|TUPILOTS|tu pilots"):
         say(text="Work in progress", channel=dm_channel)
 
-    elif compareValues(message['text'], "Esports"):
-        say(text="Taylor Esports is an up-and-coming club on Taylor University’s campus! Our goal is to provide a central hub for all gamers on campus! We aim to have teams competing every collegiate esport out there! Join the official Taylor Esports Discord to learn more at tayloresports.com.", channel=dm_channel)
+    elif compareValues(message['text'], "Esports|esports"):
+        say(text="Taylor Esports is an up-and-coming club on Taylor University’s campus! Its goal is to provide a central hub for all gamers on campus! Its aim is to have teams competing in every collegiate esport out there! Join the official Taylor Esports Discord to learn more at tayloresports.com.", channel=dm_channel)
 
-    elif compareValues(message['text'], "Crossfit |TU XFIT"):
+    elif compareValues(message['text'], "Crossfit |TU XFIT|crossfit"):
         say(text="Work in progress", channel=dm_channel)
     
-    elif compareValues(message['text'], "trivia|lets play trivia|I like trivia"):
+    elif compareValues(message['text'], "trivia"):
         changeState(user_id, 'trivia')
         commenceTriviaState(message,say)
 
@@ -140,7 +138,7 @@ def commenceNormalState(message, say):
         commenceHangmanState(message,say)
 
     elif compareValues(message['text'], 'abbreviations'):
-        abbreviations = "DTR = Define the relationship\nSTU = Student Center\nDC = Dining Commons\nTWO = Taylor World Outreach\nKSAC = Keisler Student Activity Center\nTSO = Taylor Student Organization\nSAC = Student Activity Council"
+        abbreviations = "DTR: Define the relationship\nSTU: Student Center\nDC: Dining Commons\nTWO: Taylor World Outreach\nKSAC: Keisler Student Activity Center\nTSO: Taylor Student Organization\nSAC: Student Activity Council"
         say(text=abbreviations, channel=dm_channel)
 
     elif compareValues(message['text'], 'Lara|Horsley'):
@@ -152,7 +150,7 @@ def commenceNormalState(message, say):
         commenceStudyTableState(message,say)
 
     else:
-        say(text="Not sure what you are saying...Code me further to do that!", channel=dm_channel)
+        say(text="Not sure what you are saying...Code me further to do that! Text *help* or *help-all* to see what I can do.", channel=dm_channel)
 
 def getTermId():
     url = "https://api.dev.envisageplanner.com/terms"

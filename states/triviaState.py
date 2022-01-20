@@ -58,17 +58,9 @@ def commenceTriviaState(message, say):
             say(text='Correct!', channel=dm_channel)
             changeState(user_id, 'normal')
         else:
-            say(text='Incorrect', channel = dm_channel)
-            response = "The correct answer was "+ triviaAnswer[user_id]
+            say(text='Incorrect.', channel = dm_channel)
+            response = "The correct answer was *" + triviaAnswer[user_id] + "*"
             say(text=response, channel=dm_channel)
-        say(text='Thanks for playing', channel=dm_channel)
+        say(text='Thanks for playing!', channel=dm_channel)
         changeState(user_id, 'normal')
         triviaAnswering[user_id] = False
-
-
-
-
-
-
-# def triviaAnswer(channel_id, answer):
-#     triviaAnswer[channel_id] = answer

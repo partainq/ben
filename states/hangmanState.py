@@ -30,24 +30,24 @@ def commenceHangmanState(message, say):
         unchangedWord[user_id] = currentHangman[user_id]
         numLives[user_id] = 5
         currentWord[user_id] = ''
-        say(text='let us begin', channel=dm_channel)
+        say(text='Let the games begin!', channel=dm_channel)
         for x in range(len(currentHangman[user_id])):
             currentWord[user_id] = currentWord[user_id] + "_"
 
     else:
         if message['text'] == 'quit':
-            say(text='hangman ended', channel=dm_channel)
+            say(text='GG. Thank you for playing.', channel=dm_channel)
             changeState(user_id, 'normal')
             del currentHangman[user_id]
             return
         elif len(message['text']) > 1:
-            say(text="Please only guess one letter", channel=dm_channel)
+            say(text="Please guess only one letter.", channel=dm_channel)
             return
         elif ord(message['text']) < 65 or 90 < ord(message['text']) < 97 or 122 < ord(message['text']):
-            say(text="Please guess an actual letter", channel=dm_channel)
+            say(text="Please guess an actual letter.", channel=dm_channel)
             return
         elif message['text'].lower() in currentHangman[user_id] and message['text'] != "_":
-            say(text="correct", channel=dm_channel)
+            say(text="Correct!", channel=dm_channel)
             tempIndex = (currentHangman[user_id].lower()).index(message['text'])
             flag = True
             while flag == True:
@@ -57,28 +57,24 @@ def commenceHangmanState(message, say):
                     tempIndex = (currentHangman[user_id].lower()).index(message['text'])
                 else:
                     flag = False
-
-
         else:
-            say(text="incorrect", channel=dm_channel)
+            say(text="Incorrect. Guess again.", channel=dm_channel)
             numLives[user_id] -= 1
             if numLives[user_id] < 1:
-                say(text="Out of lives", channel=dm_channel)
-                say(text="The word was: " + unchangedWord[user_id], channel=dm_channel)
-                say(text="Thanks for playing with me", channel=dm_channel)
+                say(text="Sorry, you are out of lives! Thanks for playing.", channel=dm_channel)
+                say(text="The word was: *" + unchangedWord[user_id] + "*", channel=dm_channel)
                 changeState(user_id, 'normal')
                 del currentHangman[user_id]
                 return
 
     if "_" not in currentWord[user_id]:
-        say(text="The word was: " + currentWord[user_id], channel=dm_channel)
-        say(text="you win", channel=dm_channel)
+        say(text="GG, WP. You Win! Thanks for playing.", channel=dm_channel)
+        say(text="The word was: *" + currentWord[user_id] + "*", channel=dm_channel)
         changeState(user_id, 'normal')
         del currentHangman[user_id]
         return
 
-    lives= str(numLives[user_id]) + " lives remaining"
-    say(text="Make Guess", channel=dm_channel)
+    lives= str(numLives[user_id]) + " lives remaining."
     blocks = formats.hangman.getFormat(numLives[user_id], currentWord[user_id])
 
     say(blocks=blocks, text="hangman", channel=dm_channel)
