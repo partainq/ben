@@ -11,21 +11,38 @@ def getFormat():
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "1️⃣ *Setup a study table* for you. Text me and I can anonymously notify your proffessor the need for a study session. Simply text in a DM, 'study table', and we can get the process started."
+				"text": "1️⃣ *Setup a study table* for you. Text me and I can anonymously notify your professor the need for a study session. Simply text in a DM, *study table*, and we can get the process started."
 			}
 		},
 		{
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "2️⃣ *View class rosters*, and see who is in your class! Helpful for teachers and students"
+				"text": "2️⃣ *View Club Information*. Ask about *clubs* sometime and I can give you details on some of the great things Taylor offers. "
 			}
 		},
-				{
+		{
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
 				"text": "3️⃣ *View next semester classes*, all you have to do is ask!"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "4️⃣ *Fun* things like trivia, hangman, jokes, or even explain Taylor specific abbreviations."
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "This is just a little bit of what I can do. Feel free to text *help-all* to learn about _all_ the ways I can help you. Thank you for using my services."
 			}
 		}
 	]
