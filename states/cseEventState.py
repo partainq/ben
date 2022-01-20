@@ -23,7 +23,7 @@ def commenceCSEEvent(message, say):
     if userPassword[user_id] == True:
         if hashlib.sha256(message['text'].encode()).hexdigest() == password:
             return
-        elif ';' in message['text']:
+        elif message['text'].count(';') == 2:
             say(text='Next CSE event has been changed.', channel=dm_channel)
             nextCSEEvent = message['text']
             print(nextCSEEvent)

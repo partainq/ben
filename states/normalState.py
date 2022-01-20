@@ -10,7 +10,7 @@ from states.cseEventState import getNextCSEEvent
 import random
 import pyjokes
 import requests, json
-import formats.weather, formats.help, formats.helpAll, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley, formats.abbreviations
+import formats.weather, formats.help, formats.helpAll, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley, formats.abbreviations, formats.cseEvent
 
 def commenceNormalState(message, say):
     dm_channel = message["channel"]
@@ -61,7 +61,12 @@ def commenceNormalState(message, say):
         changeState(user_id, 'cseEvent')
 
     elif compareValues(message['text'], 'cse event'):
-        say(text=getNextCSEEvent(), channel=dm_channel)
+        tempCSEEvent = getNextCSEEvent()
+        if ';' in tempCSEEvent:
+            blocks = formats.cseEvent.getFormat(tempCSEEvent)
+            say(blocks=blocks, text='CSE Event:',  channel=dm_channel)
+        else:
+            say(text=tempCSEEvent, channel=dm_channel)
 
     elif compareValues(message['text'], "flip a coin"):
         rand_int = random.randint(0, 1)
