@@ -9,19 +9,13 @@ response = requests.get(word_site)
 WORDS = response.content.splitlines()
 
 
-# hangmanWords=["psych", "roller", "wengatz", "olsen","chapel","brandle","samuel","morris","gerig","brew","english",
-#               "bergwall","campbell","euler","reade","metcalf","rupp","stu","loop","randall","apple","fruit","titanic",
-#               "batman","spiderman","thor","cars","fence","yeti","monkey","rhino","turtle","slack","hangman","lion",
-#               "tiger","zebra"]
 currentHangman={}
 numLives = {}
 unchangedWord = {}
 currentWord = {}
-# currentHangman={user_id: word}
 
 
 def commenceHangmanState(message, say):
-    channel_type = message["channel_type"]
     dm_channel = message["channel"]
     user_id = message["user"]
 
@@ -74,7 +68,6 @@ def commenceHangmanState(message, say):
         del currentHangman[user_id]
         return
 
-    lives= str(numLives[user_id]) + " lives remaining."
     blocks = formats.hangman.getFormat(numLives[user_id], currentWord[user_id])
 
     say(blocks=blocks, text="hangman", channel=dm_channel)
