@@ -1,11 +1,11 @@
-from bolt_socket import *
+from app import *
 from datetime import date, datetime
-from stateChecker import *
-from triviaState import *
-from helpfulFunctions import *
-from hangmanState import *
-from studyTableState import *
-from cseEventState import getNextCSEEvent
+from helpers.stateChecker import *
+from states.triviaState import *
+from helpers.compare import *
+from states.hangmanState import *
+from states.studyTableState import *
+from states.cseEventState import getNextCSEEvent
 
 import random
 import pyjokes

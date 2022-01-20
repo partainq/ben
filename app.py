@@ -6,17 +6,17 @@ from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
-from stateChecker import *
-from normalState import *
-from cseEventState import *
-from triviaState import *
-from helpfulFunctions import *
-from hangmanState import *
+from helpers.stateChecker import *
+from states.normalState import *
+from states.cseEventState import *
+from states.triviaState import *
+from helpers.compare import *
+from states.hangmanState import *
 
 load_dotenv()
 
-SOCKET_TOKEN = os.environ["SOCKET_TOKEN"]
-SLACK_TOKEN = os.environ["SLACK_TOKEN"]
+SOCKET_TOKEN = os.environ["SOCKET_TOKEN_DEV"]
+SLACK_TOKEN = os.environ["SLACK_TOKEN_DEV"]
 WEATHER_KEY = os.environ["WEATHER_KEY"]
 
 

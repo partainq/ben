@@ -1,7 +1,7 @@
-from bolt_socket import *
-from normalState import *
-from helpfulFunctions import *
-from stateChecker import *
+from app import *
+from states.normalState import *
+from helpers.compare import *
+from helpers.stateChecker import *
 import formats.studyTable
 
 

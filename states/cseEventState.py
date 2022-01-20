@@ -1,7 +1,7 @@
-from bolt_socket import *
-from normalState import *
-from stateChecker import *
-from helpfulFunctions import *
+from app import *
+from states.normalState import *
+from helpers.stateChecker import *
+from helpers.compare import *
 import hashlib
 
 

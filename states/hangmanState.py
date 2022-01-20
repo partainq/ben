@@ -1,5 +1,5 @@
 import random
-from stateChecker import *
+from helpers.stateChecker import *
 import formats.hangman
 import requests
 

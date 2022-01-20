@@ -1,6 +1,6 @@
-from bolt_socket import *
-from normalState import *
-from helpfulFunctions import *
+from app import *
+from states.normalState import *
+from helpers.compare import *
 from pytrivia import Category, Diffculty, Type, Trivia
 import random
 
