@@ -16,7 +16,6 @@ def commenceNormalState(message, say):
     dm_channel = message["channel"]
     user_id = message["user"]
 
-    
     if compareValues(message['text'], "hey|hi|hello|howdy"):
         greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
         msg = f"{greeting} <@{message['user']}>"
@@ -130,9 +129,19 @@ def commenceNormalState(message, say):
     elif compareValues(message['text'], "CCO|cco"):
         say(text="The Mission of the *Calling and Career Office* (CCO) is to connect students to people and experiences that guide them in discerning a faithful response to God’s call. Their office is located in the Student Center. They can help you write your resume or connect you with an internship!", channel=dm_channel)
 
-    elif compareValues(message['text'], "depressed|scared|anxiety|anxious|depression"):
-        say(text="*The*", channel=dm_channel)
+    elif compareValues(message['text'], "counseling"):
+        say(text="*Counseling Center*\n The stresses of academic life can be hard for anyone. Taylor has terrific counseling services available to help you navigate these issues.",channel=dm_channel)
+        say(text="They are located on the second level of LaRita Boren Campus Center (right above Chick Fil A). You can email counselingcenter@taylor.edu or call 765-998-5222 to set up an appointment. Visit https://my.taylor.edu/counseling-center/ for an up-to-date overview of available services and contact information", channel=dm_channel)
+
+    elif compareValues(message['text'], "tutor|tutoring"):
+        say(text="*Tutoring Services*\n Peer Tutoring Services, located in the AEC in Zondervan Library, provides free help to students in most content areas. For further information, contact Darci Nurkkala, drnurkkala@taylor.edu. Additionally, you can text me *study table* and I can notify someone that a student anonymously requested one.",channel=dm_channel)
     
+    elif compareValues(message['text'], "change major|major change|degree requirements|graduation"):
+        say(text="*Major Changes and Degree Requirements*\n All information regarding changing your major, requirements, or graduation can be found in Euler 213. Ask Laura to point you in the right direction. Don't know who Laura is? Ask away!",channel=dm_channel)
+    
+    elif compareValues(message['text'], "special needs|scott barrett|aec|AEC|enrichment center"):
+        say(text="*Academic Enrichment Center*\n The Academic Enrichment Center provides a variety of services for students who have disabilities. This includes, but is not limited to, mental, emotional, physical, and learning disabilities. Contact *Scott Barrett*, scott_barrett@taylor.edu, to learn more. If you need accommodations due to a disability, please also see your professor so that they can help accordingly.")
+
     elif compareValues(message['text'], "trivia"):
         changeState(user_id, 'trivia')
         commenceTriviaState(message,say)
