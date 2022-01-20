@@ -32,7 +32,7 @@ def getFormat():
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "4️⃣ *Fun* things like trivia, hangman, jokes, or even explain Taylor specific abbreviations."
+				"text": "4️⃣ *Fun* things like trivia, hangman, jokes, weather, or even explain Taylor specific abbreviations."
 			}
 		},
 		{
@@ -42,7 +42,7 @@ def getFormat():
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "This is just a little bit of what I can do. Feel free to text *help-all* to learn about _all_ the ways I can help you. Thank you for using my services."
+				"text": "This is just a little bit of what I can do. Feel free to text *functions* to learn about _all_ the ways I can help you. Thank you for using my services."
 			}
 		}
 	]

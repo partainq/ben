@@ -10,7 +10,7 @@ from states.cseEventState import getNextCSEEvent
 import random
 import pyjokes
 import requests, json
-import formats.weather, formats.help, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley, formats.abbreviations
+import formats.weather, formats.help, formats.helpAll, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley, formats.abbreviations
 
 def commenceNormalState(message, say):
     dm_channel = message["channel"]
@@ -50,8 +50,11 @@ def commenceNormalState(message, say):
 
     elif compareValues(message['text'], "what are you|who are you|do you do|help|can you do|purpose|capabilities"):
         blocks = formats.help.getFormat()
-
         say(blocks=blocks, text="help", channel=dm_channel)
+
+    elif compareValues(message['text'], "functions"):
+        blocks = formats.helpAll.getFormat()
+        say(blocks=blocks, text="helpAll", channel=dm_channel)
 
     elif compareValues(message['text'], 'add cse event'):
         say(text="Please enter admin password: ", channel=dm_channel)
