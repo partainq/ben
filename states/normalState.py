@@ -10,9 +10,7 @@ from states.cseEventState import getNextCSEEvent
 import random
 import pyjokes
 import requests, json
-import formats.weather, formats.help, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley
-
-load_dotenv()
+import formats.weather, formats.help, formats.nextSemester, formats.chapel, formats.clubs, formats.laraHorsley, formats.abbreviations
 
 def commenceNormalState(message, say):
     dm_channel = message["channel"]
@@ -128,6 +126,12 @@ def commenceNormalState(message, say):
 
     elif compareValues(message['text'], "Crossfit |TU XFIT|crossfit"):
         say(text="Work in progress", channel=dm_channel)
+
+    elif compareValues(message['text'], "CCO|cco"):
+        say(text="The Mission of the *Calling and Career Office* (CCO) is to connect students to people and experiences that guide them in discerning a faithful response to God’s call. Their office is located in the Student Center. They can help you write your resume or connect you with an internship!", channel=dm_channel)
+
+    elif compareValues(message['text'], "depressed|scared|anxiety|anxious|depression"):
+        say(text="*The*", channel=dm_channel)
     
     elif compareValues(message['text'], "trivia"):
         changeState(user_id, 'trivia')
@@ -138,8 +142,8 @@ def commenceNormalState(message, say):
         commenceHangmanState(message,say)
 
     elif compareValues(message['text'], 'abbreviations'):
-        abbreviations = "DTR: Define the relationship\nSTU: Student Center\nDC: Dining Commons\nTWO: Taylor World Outreach\nKSAC: Keisler Student Activity Center\nTSO: Taylor Student Organization\nSAC: Student Activity Council"
-        say(text=abbreviations, channel=dm_channel)
+        blocks = formats.abbreviations.getFormat()
+        say(blocks=blocks, text="abbreviations", channel=dm_channel)
 
     elif compareValues(message['text'], 'Lara|Horsley'):
         blocks = formats.laraHorsley.getFormat()
