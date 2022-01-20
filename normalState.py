@@ -23,10 +23,10 @@ def commenceNormalState(message, say):
         greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
         msg = f"{greeting} <@{message['user']}>"
 
-        print(dm_channel)
+        # print(dm_channel)
         say(text=msg, channel=dm_channel)
 
-    if message['text'][-1] == "=":
+    elif message['text'][-1] == "=":
         numbers = message['text'].split()
         if numbers[1] == "-":
             say(text=int(numbers[0]) - int(numbers[2], channel=dm_channel))

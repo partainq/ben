@@ -11,11 +11,12 @@ from normalState import *
 from cseEventState import *
 from triviaState import *
 from helpfulFunctions import *
+from hangmanState import *
 
 load_dotenv()
 
-SOCKET_TOKEN = os.environ["SOCKET_TOKEN_DEV"]
-SLACK_TOKEN = os.environ["SLACK_TOKEN_DEV"]
+SOCKET_TOKEN = os.environ["SOCKET_TOKEN"]
+SLACK_TOKEN = os.environ["SLACK_TOKEN"]
 WEATHER_KEY = os.environ["WEATHER_KEY"]
 
 

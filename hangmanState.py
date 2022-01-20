@@ -1,14 +1,21 @@
 import random
 from stateChecker import *
 import formats.hangman
+import requests
+
+word_site = "https://www.mit.edu/~ecprice/wordlist.10000"
+
+response = requests.get(word_site)
+WORDS = response.content.splitlines()
 
 
-hangmanWords=["psych", "roller", "wengatz", "olsen","chapel","brandle","samuel","morris","gerig","brew","english",
-              "bergwall","campbell","euler","reade","metcalf","rupp","stu","loop","randall","apple","fruit","titanic",
-              "batman","spiderman","thor","cars","fence","yeti","monkey","rhino","turtle","slack","hangman","lion",
-              "tiger","zebra"]
+# hangmanWords=["psych", "roller", "wengatz", "olsen","chapel","brandle","samuel","morris","gerig","brew","english",
+#               "bergwall","campbell","euler","reade","metcalf","rupp","stu","loop","randall","apple","fruit","titanic",
+#               "batman","spiderman","thor","cars","fence","yeti","monkey","rhino","turtle","slack","hangman","lion",
+#               "tiger","zebra"]
 currentHangman={}
 numLives = {}
+unchangedWord = {}
 currentWord = {}
 # currentHangman={user_id: word}
 
@@ -19,7 +26,8 @@ def commenceHangmanState(message, say):
     user_id = message["user"]
 
     if user_id not in currentHangman.keys():
-        currentHangman[user_id] = random.choice(hangmanWords)
+        currentHangman[user_id] = str(random.choice(WORDS))[2:-1]
+        unchangedWord[user_id] = currentHangman[user_id]
         numLives[user_id] = 5
         currentWord[user_id] = ''
         say(text='let us begin', channel=dm_channel)
@@ -56,7 +64,7 @@ def commenceHangmanState(message, say):
             numLives[user_id] -= 1
             if numLives[user_id] < 1:
                 say(text="Out of lives", channel=dm_channel)
-                say(text="The word was: " + currentWord[user_id], channel=dm_channel)
+                say(text="The word was: " + unchangedWord[user_id], channel=dm_channel)
                 say(text="Thanks for playing with me", channel=dm_channel)
                 changeState(user_id, 'normal')
                 del currentHangman[user_id]
