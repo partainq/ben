@@ -23,7 +23,7 @@ def commenceCSEEvent(message, say):
     if userPassword[user_id] == True:
         if hashlib.sha256(message['text'].encode()).hexdigest() == password:
             return
-        elif ';' in message['text']:
+        elif message['text'].count(';') == 2:
             say(text='Next CSE event has been changed.', channel=dm_channel)
             nextCSEEvent = message['text']
             print(nextCSEEvent)
@@ -44,4 +44,4 @@ def getNextCSEEvent():
     if len(nextCSEEvent) > 0:
         return nextCSEEvent
     else:
-        return "Currently there is no CSE event added. To add an event, text *add event* to me and we can start that process."
+        return "Currently there is no CSE event added. To add an event, text *add cse event* to me and we can start that process."
