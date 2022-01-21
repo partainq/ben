@@ -16,7 +16,7 @@ def commenceNormalState(message, say):
     dm_channel = message["channel"]
     user_id = message["user"]
 
-    if compareValues(message['text'], "hey|hi|hello|howdy"):
+    if compareValues(message['text'], "hey|hello |howdy "):
         greeting = random.choice(["Hi there, ", "Hey, ", "Hello, ", "Great to hear from you, ", "Hi, "])
         msg = f"{greeting} <@{message['user']}>"
 
@@ -40,7 +40,7 @@ def commenceNormalState(message, say):
 
     elif compareValues(message['text'], "whats up|what up|what's up|sup"):
         message = random.choice(["Not much. Life is pretty quiet as a chatbot.",
-                                 "Some movie about an old guy, balloons, and a flying house",
+                                 "Just enjoying life",
                                  "What can I help you with today?", "Great to hear from you."])
 
         say(text=message, channel=dm_channel)
@@ -123,10 +123,10 @@ def commenceNormalState(message, say):
         say(text="Taylor Women Engaged in Engineering and Technology, or TWEET, is a club that seeks to provide social, academic, and career development opportunities for women studying computer science and engineering (or both!). We seek to build community through events like TWEET Teas, Baking with Buddies, and game nights. \n\nInterested? Ask Lara Horsley for more information. Don't know who that is? Ask away!", channel=dm_channel)
 
     elif compareValues(message['text'], "Envisage|envisage"):
-        say(text="Work in progress", channel=dm_channel)
+        say(text="Envisage planner is an intuitive tool built by and for TU students to help you with the process of choosing your major/minor, courses, and when and how to take them. Anyone with an @taylor.edu address can sign up for free! Learn more at their website: *envisageplanner.com*", channel=dm_channel)
 
     elif compareValues(message['text'], "TU Pilots|TUPILOTS|tu pilots"):
-        say(text="TU Pilots is drone club on campus. The club welcomes people of all expierences. To learn more, ask Lara", channel=dm_channel)
+        say(text="TU Pilots is a drone club on campus. The club welcomes people of all expierences. To learn more, ask Lara", channel=dm_channel)
 
     elif compareValues(message['text'], "Esports|esports"):
         say(text="Taylor Esports is an up-and-coming club on Taylor University’s campus! Its goal is to provide a central hub for all gamers on campus! Its aim is to have teams competing in every collegiate esport out there! Join the official Taylor Esports Discord to learn more at tayloresports.com.", channel=dm_channel)
@@ -134,7 +134,7 @@ def commenceNormalState(message, say):
     elif compareValues(message['text'], "Crossfit |TU XFIT|crossfit"):
         say(text="Taylor Crossfit offers the chance for a fitness regimen that involves constantly varied functional movements performed at high intensity. Ask the front desk at the KSAC for more information.", channel=dm_channel)
 
-    elif compareValues(message['text'], "CCO|cco"):
+    elif compareValues(message['text'], "CCO |cco |calling and career"):
         say(text="The Mission of the *Calling and Career Office* (CCO) is to connect students to people and experiences that guide them in discerning a faithful response to God’s call. Their office is located in the Student Center. They can help you write your resume or connect you with an internship!", channel=dm_channel)
 
     elif compareValues(message['text'], "counseling"):
@@ -166,10 +166,44 @@ def commenceNormalState(message, say):
         blocks = formats.laraHorsley.getFormat()
         say(blocks=blocks, text="Lara Horsley", channel=dm_channel)
 
-    elif compareValues(message['text'], 'studytable|study table|table study'):
-        changeState(user_id, 'studyTable')
-        commenceStudyTableState(message,say)
+    elif compareValues(message['text'], 'Lara|Horsley'):
+        blocks = formats.laraHorsley.getFormat()
+        say(blocks=blocks, text="Lara Horsley", channel=dm_channel)
 
+    elif compareValues(message['text'], 'i love you'):
+        say(text="I love you too....I think.", channel=dm_channel)
+
+    elif compareValues(message['text'], "color"):
+        say(text="My *favorite color* system tells me that I like *100000000000000010000000*, but I can't remember how to decode it. Can you?", channel=dm_channel)
+
+    elif compareValues(message['text'], 'quinn|micah'):
+        say(text="*Quinn Partain* and *Micah Odell* are the people who made me possible.", channel=dm_channel)
+
+    elif compareValues(message['text'], 'thank you | thankyou | thanks'):
+        msg = random.choice(["You are welcome!",
+                            "You are so welcome. Thank you for saying thank you.😄 "])   
+        say(text=msg, channel=dm_channel)
+
+    elif compareValues(message['text'], 'favorite class'):
+        say(text="My *favorite class* was COS243, Multi-tier Web Application Development. That was a great class and I learned alot, useful for internships, and I had fun. Interested in seeing if it is offered next year? Text *next semester* to see if it is offered. ", channel=dm_channel)
+
+    elif compareValues(message['text'], 'hardest class'):
+        say(text="The *hardest class* I ever took was Machine Learning. It was a lot of work, but very applicable and helpful.", channel=dm_channel)
+
+    elif compareValues(message['text'], 'internship'):
+        say(text="If you are looking for an *internship*, the best thing you can do is talk to alumni. Alumni love connecting you with Taylor Students. Not sure of any alumni? Talk to Lara or a professor to help you out! It is never too early to get an internship.", channel=dm_channel)
+
+    elif compareValues(message['text'], 'IDE |ide '):
+        say(text="Visual Studio Code is the way to go.😎", channel=dm_channel)
+    
+    elif compareValues(message['text'], 'videogame|videogames|video games'):
+        say(text="My favorite *videogame* is Old School Runescape. If you like video games, check out the Taylor Esports club! Learn more by texting *esports*. ", channel=dm_channel)
+
+    elif compareValues(message['text'], "hi"):
+        greeting = random.choice(["Hi there, ", "Hello, "])
+        msg = f"{greeting} <@{message['user']}>."
+
+        say(text=msg, channel=dm_channel)
     else:
         say(text="Not sure what you are saying...Code me further to do that! Text *help* to see what I can do.", channel=dm_channel)
 
