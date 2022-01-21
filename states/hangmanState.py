@@ -29,7 +29,7 @@ def commenceHangmanState(message, say):
             currentWord[user_id] = currentWord[user_id] + "_"
 
     else:
-        if message['text'] == 'quit':
+        if message['text'].lower() == 'quit':
             say(text='GG. Thank you for playing.', channel=dm_channel)
             changeState(user_id, 'normal')
             del currentHangman[user_id]

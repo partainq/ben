@@ -28,12 +28,12 @@ def commenceCSEEvent(message, say):
             nextCSEEvent = message['text']
             print(nextCSEEvent)
             changeState(user_id, 'normal')
-        elif message['text'] == 'quit':
+        elif message['text'].lower() == 'quit':
             say(text="back to normal Ben", channel=dm_channel)
             changeState(user_id, 'normal')
         else:
             say(text='Try again', channel=dm_channel)
-    elif message['text'] == 'quit':
+    elif message['text'].lower() == 'quit':
         say(text="Thank you. Have a great day!", channel=dm_channel)
         changeState(user_id, 'normal')
     else:

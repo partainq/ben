@@ -29,7 +29,7 @@ def commenceStudyTableState(message, say):
         checkingPassword[user_id] = False
         findingBadMessage[user_id] = False
 
-    if message['text'] == 'quit':
+    if message['text'].lower() == 'quit':
         say(text="studyTable state cancel", channel=dm_channel)
         del reasoning[user_id]
         del explaining[user_id]
@@ -39,7 +39,7 @@ def commenceStudyTableState(message, say):
         del findingBadMessage[user_id]
         changeState(user_id, 'normal')
 
-    elif message['text'] == 'check history':
+    elif message['text'].lower() == 'check history':
         say(text="To check history, please provide admin password", channel=dm_channel)
         checkingPassword[user_id] = True
         explaining[user_id] = False
