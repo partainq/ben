@@ -37,7 +37,7 @@ def anything(message, say):
     currentState = checkState(user_id)
     totalMessages +=1
     if compareValues(message['text'], 'usage'):
-        tempWords = "Total messages asked Ben: ", str(totalMessages)
+        tempWords = "Total messages asked Ben: " + str(totalMessages)
         say(text=tempWords, channel=dm_channel)
 
     elif currentState == "normal":
