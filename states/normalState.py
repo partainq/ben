@@ -158,6 +158,10 @@ def commenceNormalState(message, say):
         changeState(user_id, 'hangman')
         commenceHangmanState(message,say)
 
+    elif compareValues(message['text'], 'studytable|study table|homework'):
+        changeState(user_id, 'studyTable')
+        commenceStudyTableState(message,say)
+
     elif compareValues(message['text'], 'abbreviations'):
         blocks = formats.abbreviations.getFormat()
         say(blocks=blocks, text="abbreviations", channel=dm_channel)
