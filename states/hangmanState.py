@@ -42,10 +42,10 @@ def commenceHangmanState(message, say):
             return
         elif message['text'].lower() in currentHangman[user_id] and message['text'] != "_":
             say(text="Correct!", channel=dm_channel)
-            tempIndex = (currentHangman[user_id]).index(message['text'])
+            tempIndex = (currentHangman[user_id].lower()).index(message['text'].lower())
             flag = True
             while flag == True:
-                currentWord[user_id] = currentWord[user_id][:tempIndex] + message["text"] + currentWord[user_id][tempIndex+1:]
+                currentWord[user_id] = currentWord[user_id][:tempIndex] + message["text"].lower() + currentWord[user_id][tempIndex+1:]
                 currentHangman[user_id] = currentHangman[user_id][:tempIndex] + "_" + currentHangman[user_id][tempIndex+1:]
                 if message['text'] in currentHangman[user_id]:
                     tempIndex = (currentHangman[user_id].lower()).index(message['text'].lower())
