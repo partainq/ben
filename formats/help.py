@@ -4,7 +4,7 @@ def getFormat():
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "Hey there 👋 I'm Ben. I'm here to help you and answer Taylor related questions. Ask for the weather, a joke, or just say hey sometime! I go above and beyond to be extra nice. I also have several other helpful capabilities, such as:"
+				"text": "Hey there 👋 I'm Ben. I'm here to help and answer Taylor related questions. Ask for the weather, a joke, or just say hey sometime! I go above and beyond to be extra nice. I also have several other helpful capabilities, such as:"
 			}
 		},
 		{
@@ -18,7 +18,7 @@ def getFormat():
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "2️⃣ *View Club Information*. Ask about *clubs* sometime and I can give you details on some of the great things Taylor offers. "
+				"text": "2️⃣ *View Club Information*. Ask about *clubs* sometime and I can give you details on some of the great clubs Taylor offers. "
 			}
 		},
 		{

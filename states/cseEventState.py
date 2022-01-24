@@ -26,7 +26,6 @@ def commenceCSEEvent(message, say):
         elif message['text'].count(';') == 2:
             say(text='Next CSE event has been changed.', channel=dm_channel)
             nextCSEEvent = message['text']
-            print(nextCSEEvent)
             changeState(user_id, 'normal')
         elif message['text'].lower() == 'quit':
             say(text="back to normal Ben", channel=dm_channel)

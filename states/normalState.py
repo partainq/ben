@@ -204,7 +204,48 @@ def commenceNormalState(message, say):
         msg = f"{greeting} <@{message['user']}>."
 
         say(text=msg, channel=dm_channel)
+
+    elif message['text'] == "Do I look fat?":
+        say(text="No, you look perfect!", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Would this girl go out with me"):
+        say(text="Any girl would be lucky to go out with you!! :)", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Would this guy go out with me"):
+        say(text="Any guy would be lucky to go out with you!! :)", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Who is the best basketball player ever?"):
+        say(text='Mike Miller', channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "What is the best movie series of all time?"):
+        say(text='Lord of the Rings', channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Who is the best League of Legends character?"):
+        say(text="Teemo", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Teemo"):
+        say(text="Never underestimate the power of the scouts code!", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Whats the number 2 donut shop in the country?"):
+        say(text="Bill's Donut Shop", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Crypto?"):
+        say(text="That stuff is over my head, however I'm sure a legendary Dr. Geisler would love to help!", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Best pirate ever?"):
+        say(text="Captain Jack Sparrow", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Should we go to Dans?"):
+        say(text="Yes!! I love donuts!", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Who is the best League of Legends character?"):
+        say(text="Teemo", channel=dm_channel)
+
+    elif compareValues(message['text'].lower(), "Is Trevor fat?"):
+        say(text="From my angle he's huge!", channel=dm_channel)
+
     else:
+        print(message['text'])
         say(text="Not sure what you are saying...Code me further to do that! Text *help* to see what I can do.", channel=dm_channel)
 
 def getTermId():

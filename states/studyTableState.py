@@ -30,7 +30,7 @@ def commenceStudyTableState(message, say):
         findingBadMessage[user_id] = False
 
     if message['text'].lower() == 'quit':
-        say(text="studyTable state cancel", channel=dm_channel)
+        say(text="Ok, have a nice day!", channel=dm_channel)
         del reasoning[user_id]
         del explaining[user_id]
         del asking[user_id]
@@ -65,14 +65,23 @@ def commenceStudyTableState(message, say):
             say(text="Incorrect username format. Please use the @sign and specify who you would like to be notifed", channel=dm_channel)
             say(text="What professor would you like to notify? Please use an @sign ", channel=dm_channel)
     elif confirming[user_id]:
-        if message['text'] == 'yes':
+        if message['text'].lower() == 'yes':
             msg = "Great! Please provide a short reason for this study table and the class that it is for.\n\n*Example:*\nCOS243 Javascript help with promises."
             say(text=msg, channel=dm_channel)
             confirming[user_id] = False
             reasoning[user_id] = True
+        elif message['text'].lower() == 'no':
+            say(text="Ok, have a nice day!", channel=dm_channel)
+            del reasoning[user_id]
+            del explaining[user_id]
+            del asking[user_id]
+            del confirming[user_id]
+            del checkingPassword[user_id]
+            del findingBadMessage[user_id]
+            changeState(user_id, 'normal')
         else:
-            say(text="Incorret format, please respond with a 'yes' or 'no'.")
-            msg = "Are you sure you want to notify " + who + " for a study table? Please respond with a 'yes' or 'no'."
+            say(text="Incorret format, please respond with a *yes* or *no*.")
+            msg = "Are you sure you want to notify " + who + " for a study table? Please respond with a *yes* or *no*."
             say(text=msg, channel=dm_channel)
     elif reasoning[user_id]:
         msg = 'An anonymous request for a study table has been sent to '+ who +'. Good luck in your studies!'
