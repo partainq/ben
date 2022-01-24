@@ -47,7 +47,7 @@ def commenceHangmanState(message, say):
             while flag == True:
                 currentWord[user_id] = currentWord[user_id][:tempIndex] + message["text"].lower() + currentWord[user_id][tempIndex+1:]
                 currentHangman[user_id] = currentHangman[user_id][:tempIndex] + "_" + currentHangman[user_id][tempIndex+1:]
-                if message['text'] in currentHangman[user_id]:
+                if message['text'].lower() in currentHangman[user_id].lower():
                     tempIndex = (currentHangman[user_id].lower()).index(message['text'].lower())
                 else:
                     flag = False
