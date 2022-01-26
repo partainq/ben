@@ -43,5 +43,4 @@ Curtesy of Dr. Nurkkala and from OpenWeatherAPI
 Micah Odell + Quinn Partain
 
 ##
-Agile Board
-https://miro.com/app/board/uXjVOYUGf3I=/
+Agile Board: https://miro.com/app/board/uXjVOYUGf3I=/
